@@ -8,5 +8,5 @@
 import Foundation
 
 enum TableImportRouter: Hashable {
-    case portalWebSite(url: String)
+    case portalWebSite(shortName: String, url: String)
 }

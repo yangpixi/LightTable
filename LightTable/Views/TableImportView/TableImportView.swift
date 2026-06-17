@@ -15,15 +15,15 @@ struct TableImportView: View {
     var body: some View {
         VStack {
             List(schoolDetails) { school in
-                NavigationLink("\(school.name)", value: TableImportRouter.portalWebSite(url: school.portalUrl))
+                NavigationLink("\(school.name)", value: TableImportRouter.portalWebSite(shortName: school.shortName, url: school.portalUrl))
             }
         }
         .navigationTitle("选择课表来源学校")
         .navigationBarTitleDisplayMode(.inline)
         .navigationDestination(for: TableImportRouter.self) { router in
             switch router {
-            case .portalWebSite(let url):
-                PortalView(url: url)
+            case .portalWebSite(let shortName, let url):
+                PortalView(shortName: shortName, url: url)
             }
         }
     }
