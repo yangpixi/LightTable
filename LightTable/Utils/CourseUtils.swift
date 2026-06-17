@@ -38,22 +38,45 @@ struct CourseUtils {
         return nil
     }
     
-    static func saveImportedCourses(_ rawData: String) {
+    static func saveImportedCourses(_ rawData: String) throws {
         
         let modelContext = ModelContext(LightTableDatabase.sharedContainer)
+        modelContext.autosaveEnabled = false
         
         if let jsonData = rawData.data(using: .utf8) {
             let decoder = JSONDecoder()
             
-            do {
-                let dto = try decoder.decode(TableDTO.self, from: jsonData)
-                dto.courses.forEach { course in
-                    modelContext.insert(course)
-                }
-                print("导入课表成功! ")
-            } catch {
-                print("json解析失败: \(error)")
+            
+            let dto = try decoder.decode(TableDTO.self, from: jsonData)
+            let termStrs = dto.term.split(separator: "-")
+            guard !termStrs.isEmpty && termStrs.count == 3 else {
+                throw TermFormatError.formatInccorect(msg: "学期时间格式不正确！")
             }
+            
+            // parse the term time
+            var startDay: String
+            if termStrs.last == "1" {
+                startDay = termStrs[0].appending("-9-1")
+            } else if termStrs.last == "2" {
+                startDay = termStrs[1].appending("-3-1")
+            } else {
+                throw TermFormatError.formatInccorect(msg: "学期时间格式不正确！")
+            }
+            
+            let table = Table(term: dto.term, totalWeeks: 20, startDay: TimeUtils.dateFormatter.date(from: startDay)!) // all in defauls
+            
+            // insert data
+            dto.courses.forEach { course in
+                modelContext.insert(course)
+            }
+            
+            modelContext.insert(table)
+            
+            UserDefaults.standard.set(table.id.uuidString, forKey: "selected_table")
+            
+            try modelContext.save()
+            print("导入课表成功! ")
+            
         }
     }
 }

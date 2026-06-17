@@ -23,17 +23,35 @@ struct TablePage: View {
     
     private let periodHeight = CGFloat(50)
     private let padding = CGFloat(10)
-    private var weekdays = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+    private var weekdays = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
+    
+    private var weekText: String {
+        var weekText: String
+        if week != TimeUtils.getCurrentWeeFromSpecificDay(from: startDay) {
+            weekText = "第 \(week) 周 (非本周)"
+        } else {
+            weekText = "第 \(week) 周"
+        }
+        return weekText
+    }
+    
+    private func isToday(index: Int) -> Bool {
+        if TimeUtils.getDateOf(week: week, weekday: index + 1, since: startDay) == TimeUtils.getCurrentDay() && 
+            week == TimeUtils.getCurrentWeeFromSpecificDay(from: startDay) {
+            return true
+        }
+        return false
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("第 \(week) 周")
+            Text(weekText)
                 .offset(x: 17)
                 .bold()
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 20) {
                     // 当前月份
-                    Text("\(TimeUtils.getCurrentMonth())月")
+                    Text("\(TimeUtils.getMonthOf(week: week, since: startDay))月")
                         .gridColumnAlignment(.trailing)
                         .bold()
                         .padding(.horizontal, 10)
@@ -59,13 +77,20 @@ struct TablePage: View {
                                 ZStack(alignment: .top) {
                                     VStack(alignment: .center) {
                                         Text(weekday)
-                                        Text("\(TimeUtils.getDateOf(week: week, weekday: index == 6 ? 1 : index + 2, since: startDay))")
+                                        Text("\(TimeUtils.getDateOf(week: week, weekday: index + 1, since: startDay))")
                                             .font(.footnote)
-                                            .foregroundStyle(.gray)
+                                            .foregroundStyle(isToday(index: index) ? .black : .gray)
+                                            .padding(.horizontal, 2)
+                                            .background {
+                                                if isToday(index: index) {
+                                                    RoundedRectangle(cornerRadius: 2)
+                                                        .fill(Color.gray)
+                                                }
+                                            }
                                     }
                                     .offset(y: -40)
                                     
-                                    ForEach(CourseUtils.coursesFor(weekday: index == 6 ? 1 : index + 2, week: week, in: courses)) { course in
+                                    ForEach(CourseUtils.coursesFor(weekday: index + 1, week: week, in: courses)) { course in
                                         TableCourse(name: course.name, location: course.location)
                                             .frame(width: 45, height: (periodHeight * CGFloat(course.period.count)) + (CGFloat(course.period.count) - 1) * padding)
                                             .overlay(

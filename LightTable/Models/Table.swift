@@ -9,8 +9,9 @@ import Foundation
 import SwiftData
 
 @Model
-class Table {
+class Table: Identifiable, Hashable {
     @Attribute(.unique) var id = UUID()
+    
     var term: String
     var totalWeeks: Int
     var startDay: Date
@@ -20,4 +21,5 @@ class Table {
         self.totalWeeks = totalWeeks
         self.startDay = startDay
     }
+    
 }

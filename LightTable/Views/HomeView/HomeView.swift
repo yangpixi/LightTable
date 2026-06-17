@@ -14,32 +14,31 @@ struct HomeView: View {
     @Query private var courses: [Course]
     @Query(sort: \Period.period, order: .forward) private var periods: [Period]
     
-    private let userDefaults = UserDefaults.standard
-    
-    private let startDay = TimeUtils.dateFormatter.date(from: "2026-3-2")!
-    @AppStorage("termTotalWeeks") private var totalWeeks = 25
-    @State private var currentWeek: Int? = TimeUtils.getCurrentWeeFromSpecificDay(from: TimeUtils.dateFormatter.date(from: "2026-3-2")!, to: Date())
+    @Environment(\.modelContext) private var modelContext
+    @State private var viewModel = HomeViewModel()
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(spacing: 0) {
-                ForEach(1...totalWeeks, id: \.self) { weeks in
-                    TablePage(week: weeks, courses: courses, periods: periods, startDay: startDay)
-                        .containerRelativeFrame(.horizontal)
+        
+        ZStack {
+            if let currentTable = viewModel.currentTable {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack(spacing: 0) {
+                        ForEach(1...currentTable.totalWeeks, id: \.self) { weeks in
+                            TablePage(week: weeks, courses: courses, periods: periods, startDay: currentTable.startDay)
+                                .containerRelativeFrame(.horizontal)
+                        }
+                    }
+                    .scrollTargetLayout()
                 }
+                .scrollTargetBehavior(.paging)
+                .scrollPosition(id: $viewModel.currentWeek)
+            } else {
+                Text("请先导入课表")
             }
-            .scrollTargetLayout()
         }
-        .scrollTargetBehavior(.paging)
-        .scrollPosition(id: $currentWeek)
-        .navigationDestination(for: HomeRouter.self, destination: { item in
-            switch item {
-            case .importTable: // 导入课表的路由
-                TableImportView()
-            case .tableSettings: 
-                TableSettingsView()
-            }
-        })
+        .onAppear {
+            viewModel.loadData(modelContext: modelContext)
+        }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
@@ -50,6 +49,16 @@ struct HomeView: View {
                 }
             }
         }
+        .navigationDestination(for: HomeRouter.self, destination: { item in
+            switch item {
+            case .importTable: // 导入课表的路由
+                TableImportView()
+            case .tableSettings: 
+                TableSettingsView()
+            }
+        })
+        
+        
     }
 }
 

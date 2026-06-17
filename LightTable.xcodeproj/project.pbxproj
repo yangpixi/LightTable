@@ -100,11 +100,12 @@
 				};
 			};
 			buildConfigurationList = 4AF086262FDE60C4008C52A7 /* Build configuration list for PBXProject "LightTable" */;
-			developmentRegion = en;
+			developmentRegion = "zh-Hans";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 4AF086222FDE60C4008C52A7;
 			minimizedProjectReferenceProxies = 1;
