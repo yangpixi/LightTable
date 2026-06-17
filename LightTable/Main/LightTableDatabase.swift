@@ -17,7 +17,8 @@ class LightTableDatabase {
         let schema = Schema([
             Period.self,
             Course.self,
-            SchoolDetail.self
+            SchoolDetail.self,
+            Table.self
         ])
         
         let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
@@ -68,6 +69,7 @@ class LightTableDatabase {
             }
             context.insert(SchoolDetail(shortName: school.key, name: school.value, extractScript: script, portalUrl: defaultSchoolPortal[school.key]!))
         }
+        
         do {
             try context.save()
             userDefaults.set(true, forKey: initializingFlag)
