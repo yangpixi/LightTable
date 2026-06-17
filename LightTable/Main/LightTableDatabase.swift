@@ -59,14 +59,14 @@ class LightTableDatabase {
         }
         
         let defaultSchool = ["Csu":"中南大学"]
-        let defaultSchoolPortal = ["Csu":"https://my.csu.edu.cn/portal/index.jsp"]
+        let defaultSchoolPortal = ["Csu":"http://csujwc.its.csu.edu.cn/sso.jsp"]
         
         defaultSchool.forEach { school in
             guard let script = ScriptUtils.loadExtractScript(for: school.key) else {
                 print("\(school)脚本初始化失败")
                 return
             }
-            context.insert(SchoolDetail(name: school.value, extractScript: script, portalUrl: defaultSchoolPortal[school.key]!))
+            context.insert(SchoolDetail(shortName: school.key, name: school.value, extractScript: script, portalUrl: defaultSchoolPortal[school.key]!))
         }
         do {
             try context.save()

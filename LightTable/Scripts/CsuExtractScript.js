@@ -165,14 +165,12 @@
           parseCourseDiv(div).forEach(course => {
             courses.push({
               name: course.name,
-              location: course.location || "",
+              location: course.location == null ? "" : "@" + course.location,
               teacher: course.teacher || "",
-              weekText: course.weekText || "",
               weekInterval: course.weekInterval || [],
               weekday: weekdayMap[columnIndex - 1],
-              weekdayName: weekdayNames[columnIndex - 1],
-              period,
-              periodText
+              period: period,
+              table: document.querySelector("#xnxq01id")?.value || ""
             });
           });
         });
