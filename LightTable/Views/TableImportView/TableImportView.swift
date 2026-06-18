@@ -26,6 +26,7 @@ struct TableImportView: View {
                 PortalView(shortName: shortName, url: url)
             }
         }
+        .toolbarVisibility(.hidden, for: .tabBar)
     }
 }
 

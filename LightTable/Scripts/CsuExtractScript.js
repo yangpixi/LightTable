@@ -165,7 +165,7 @@
           parseCourseDiv(div).forEach(course => {
             courses.push({
               name: course.name,
-              location: course.location == null ? "" : "@" + course.location,
+              location: course.location || "",
               teacher: course.teacher || "",
               weekInterval: course.weekInterval || [],
               weekday: weekdayMap[columnIndex - 1],

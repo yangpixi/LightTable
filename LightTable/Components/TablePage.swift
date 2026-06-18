@@ -23,11 +23,11 @@ struct TablePage: View {
     
     private let periodHeight = CGFloat(50)
     private let padding = CGFloat(10)
-    private var weekdays = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
+    private var weekdays = ["日", "一", "二", "三", "四", "五", "六"]
     
     private var weekText: String {
         var weekText: String
-        if week != TimeUtils.getCurrentWeeFromSpecificDay(from: startDay) {
+        if week != currentWeek {
             weekText = "第 \(week) 周 (非本周)"
         } else {
             weekText = "第 \(week) 周"
@@ -35,9 +35,17 @@ struct TablePage: View {
         return weekText
     }
     
+    private var currentWeek: Int {
+        TimeUtils.getCurrentWeeFromSpecificDay(from: startDay)
+    }
+    
+    private var currentDay: Int {
+        TimeUtils.getCurrentDay()
+    }
+    
     private func isToday(index: Int) -> Bool {
-        if TimeUtils.getDateOf(week: week, weekday: index + 1, since: startDay) == TimeUtils.getCurrentDay() && 
-            week == TimeUtils.getCurrentWeeFromSpecificDay(from: startDay) {
+        if TimeUtils.getDateOf(week: week, weekday: index + 1, since: startDay) == currentDay && 
+            week == currentWeek {
             return true
         }
         return false
@@ -46,7 +54,7 @@ struct TablePage: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(weekText)
-                .offset(x: 17)
+                .offset(x: 20)
                 .bold()
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 20) {
@@ -62,12 +70,13 @@ struct TablePage: View {
                             ForEach(periods, id: \.id) { period in
                                 VStack {
                                     Text("\(period.period)")
-                                        .font(.footnote)
-                                    Text(period.startTime)
-                                        .font(.footnote)
-                                    Text(period.endTime)
-                                        .font(.footnote)
+                                    Group {
+                                        Text(period.startTime)
+                                        Text(period.endTime)  
+                                    }
+                                    .foregroundStyle(.gray.opacity(0.9))
                                 }
+                                .font(.footnote.scaled(by: 0.9))
                                 .frame(width: 40,height: periodHeight)
                             }
                         }
@@ -80,11 +89,11 @@ struct TablePage: View {
                                         Text("\(TimeUtils.getDateOf(week: week, weekday: index + 1, since: startDay))")
                                             .font(.footnote)
                                             .foregroundStyle(isToday(index: index) ? .black : .gray)
-                                            .padding(.horizontal, 2)
+                                            .padding(.horizontal, 5)
                                             .background {
                                                 if isToday(index: index) {
-                                                    RoundedRectangle(cornerRadius: 2)
-                                                        .fill(Color.gray)
+                                                    RoundedRectangle(cornerRadius: 5)
+                                                        .fill(Color.gray.opacity(0.2))
                                                 }
                                             }
                                     }
@@ -93,10 +102,10 @@ struct TablePage: View {
                                     ForEach(CourseUtils.coursesFor(weekday: index + 1, week: week, in: courses)) { course in
                                         TableCourse(name: course.name, location: course.location)
                                             .frame(width: 45, height: (periodHeight * CGFloat(course.period.count)) + (CGFloat(course.period.count) - 1) * padding)
-                                            .overlay(
+                                            .background {
                                                 RoundedRectangle(cornerRadius: 5)
-                                                    .stroke(.black, lineWidth: 1)
-                                            )
+                                                    .fill(Color.gray.opacity(0.2))
+                                            }
                                             .offset(y: CGFloat(course.period.first! - 1) * (periodHeight + padding))
                                     }
                                 }

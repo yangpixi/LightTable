@@ -12,6 +12,7 @@ struct TableSettingsView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var viewModel = TableSettingsViewModel()
     @Query private var tables: [Table]
+    @Query(sort: \Period.period, order: .forward) private var periods: [Period]
     
     @FocusState private var isInputFocused: Bool
     
@@ -24,6 +25,9 @@ struct TableSettingsView: View {
                     ForEach(tables) { table in
                         Text(table.term).tag(Table?.some(table))
                     }
+                }
+                if viewModel.selectedTable != nil {
+                    NavigationLink("时间设置", value: TableSettingsRouter.timeSetting)    
                 }
             }
             
@@ -55,6 +59,7 @@ struct TableSettingsView: View {
                     Text("请先选择一个课表以进行设置")
                 }
             }
+            
         }
         .scrollDismissesKeyboard(.interactively)
         .onAppear {
@@ -62,6 +67,12 @@ struct TableSettingsView: View {
         }
         .navigationTitle("课表设置")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationDestination(for: TableSettingsRouter.self, destination: { router in
+            switch router {
+            case .timeSetting:
+                TimeSettingView()
+            }
+        })
         .toolbarVisibility(.hidden, for: .tabBar)
     }
 }
