@@ -18,10 +18,12 @@ struct TableCourse: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            Text(name)
-                .font(.footnote)
-            Text(location)
-                .font(.footnote)
+            Group {
+                Text(name)
+                Text(location)
+                    .foregroundStyle(.gray.opacity(0.9))
+            }
+            .font(.footnote.scaled(by: 0.9))
         }
         .padding(2)
     }
