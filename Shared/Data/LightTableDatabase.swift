@@ -34,10 +34,10 @@ class LightTableDatabase {
     }()
     
     private static func checkAndDoInitialization(container: ModelContainer) {
-        let userDefaults = UserDefaults.standard
+        let userDefaults = UserDefaults(suiteName: "group.com.yangpixi.LightTable")
         
         // 如果存在这个flag，则代表数据库已经初始化了
-        if userDefaults.bool(forKey: initializingFlag) {
+        if userDefaults?.bool(forKey: initializingFlag) ?? false {
             return
         }
         
@@ -73,7 +73,7 @@ class LightTableDatabase {
         
         do {
             try context.save()
-            userDefaults.set(true, forKey: initializingFlag)
+            userDefaults?.set(true, forKey: initializingFlag)
             print("默认数据初始化成功！")
         } catch {
             print("初始数据保存失败: \(error)")

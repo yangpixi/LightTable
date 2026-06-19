@@ -96,7 +96,7 @@ struct TableWindowProvider: @MainActor TimelineProvider {
     func getSnapshot(in context: Context, completion: @escaping @Sendable (TableEntry) -> Void) {
         let mockTable = Table(term: "2025-2026-2", totalWeeks: 20, startDay: .now)
         let mockCourse = Course(name: "高等数学", location: "A座101", teacher: "昊王", weekInterval: [1, 2], weekday: 1, period: [1, 2], table: mockTable)
-        let entry = TableEntry(date: Date(), courses: [mockCourse], currentWeek: 1, periodStr: [:])
+        let entry = TableEntry(date: Date(), courses: [mockCourse], currentWeek: 1, periodStr: [mockCourse.id:"08:00-9:40"])
         completion(entry)
     }
     
