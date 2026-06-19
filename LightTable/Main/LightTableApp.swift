@@ -14,6 +14,7 @@ struct LightTableApp: App {
         WindowGroup {
             RootView()
                 .task {
+                    LightTableDatabase.initializeDefaultDataIfNeeded()
                     await triggerNetworkPermissionPrompt()
                 }
         }
