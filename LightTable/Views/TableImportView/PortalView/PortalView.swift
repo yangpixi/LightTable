@@ -47,6 +47,7 @@ struct PortalView: View {
                                 isSuccess = true
                                 dismiss()
                             } catch {
+                                print("\(error)")
                                 showAlert = true
                             }
                             

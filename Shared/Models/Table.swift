@@ -16,6 +16,9 @@ class Table: Identifiable, Hashable {
     var totalWeeks: Int
     var startDay: Date
     
+    @Relationship(deleteRule: .cascade, inverse: \Course.table) 
+    var courses: [Course] = []
+    
     init(term: String, totalWeeks: Int, startDay: Date) {
         self.term = term
         self.totalWeeks = totalWeeks

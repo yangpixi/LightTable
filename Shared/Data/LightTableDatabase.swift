@@ -14,6 +14,7 @@ class LightTableDatabase {
     private static let initializingFlag = "isInitialized"
     
     static let sharedContainer: ModelContainer = {
+        let groupName = "group.com.yangpixi.LightTable"
         let schema = Schema([
             Period.self,
             Course.self,
@@ -21,7 +22,7 @@ class LightTableDatabase {
             Table.self
         ])
         
-        let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false, groupContainer: .identifier(groupName))
         
         do {
             let container = try ModelContainer(for: schema, configurations: configuration)

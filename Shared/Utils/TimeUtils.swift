@@ -31,8 +31,13 @@ struct TimeUtils {
         return Calendar.current.component(.day, from: Date())
     }
     
+    // 获取当前星期
+    static func getCurrentWeekday() -> Int {
+        return Calendar.current.component(.weekday, from: Date())
+    }
+    
     // 获取当前周数
-    static func getCurrentWeeFromSpecificDay(from start: Date) -> Int {
+    static func getCurrentWeekFromSpecificDay(from start: Date) -> Int {
         
         let startCalendar = calendar.startOfDay(for: start)
         let endCalendar = calendar.startOfDay(for: Date())
