@@ -26,12 +26,15 @@ class LightTableDatabase {
         
         do {
             let container = try ModelContainer(for: schema, configurations: configuration)
-            checkAndDoInitialization(container: container)
             return container
         } catch {
             fatalError("无法初始化 SwiftData 容器: \(error)")
         }
     }()
+    
+    static func initializeDefaultDataIfNeeded() {
+        checkAndDoInitialization(container: sharedContainer)
+    }
     
     private static func checkAndDoInitialization(container: ModelContainer) {
         let userDefaults = UserDefaults(suiteName: "group.com.yangpixi.LightTable")
