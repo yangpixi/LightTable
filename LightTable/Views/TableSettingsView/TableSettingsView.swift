@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct TableSettingsView: View {
     @Environment(\.modelContext) private var modelContext
@@ -65,6 +66,9 @@ struct TableSettingsView: View {
         .onAppear {
             viewModel.initData(modelContext: modelContext)
         }
+        .onChange(of: viewModel.selectedTable?.hashValue, { _, _ in
+            WidgetCenter.shared.reloadTimelines(ofKind: "TableWindow")
+        })
         .navigationTitle("课表设置")
         .navigationBarTitleDisplayMode(.inline)
         .navigationDestination(for: TableSettingsRouter.self, destination: { router in

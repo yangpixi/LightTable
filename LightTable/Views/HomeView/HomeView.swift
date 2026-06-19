@@ -10,8 +10,6 @@ import System
 import SwiftData
 
 struct HomeView: View {
-    
-    @Query private var courses: [Course]
     @Query(sort: \Period.period, order: .forward) private var periods: [Period]
     
     @Environment(\.modelContext) private var modelContext
@@ -20,11 +18,11 @@ struct HomeView: View {
     var body: some View {
         
         ZStack {
-            if let currentTable = viewModel.currentTable {
+            if let currentTable = viewModel.currentTable, let currentCourses = viewModel.courses {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack(spacing: 0) {
                         ForEach(1...currentTable.totalWeeks, id: \.self) { weeks in
-                            TablePage(week: weeks, courses: courses, periods: periods, startDay: currentTable.startDay)
+                            TablePage(week: weeks, courses: currentCourses, periods: periods, startDay: currentTable.startDay)
                                 .containerRelativeFrame(.horizontal)
                         }
                     }

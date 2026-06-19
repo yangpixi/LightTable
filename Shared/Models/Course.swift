@@ -17,9 +17,9 @@ class Course: Identifiable, Decodable {
     var weekInterval: [Int] // 课程开设周数
     var weekday: Int // 课程在一周中开设的星期(1 为周日)
     var period: [Int] // 课程在一天中开设的节次
-    var table: String // 课程属于的课表
-
-    init(name: String, location: String, teacher: String, weekInterval: [Int], weekday: Int, period: [Int], table: String) {
+    var table: Table? // 课程属于的课表
+    
+    init(name: String, location: String, teacher: String, weekInterval: [Int], weekday: Int, period: [Int], table: Table) {
         self.name = name
         self.location = location
         self.teacher = teacher
@@ -31,9 +31,9 @@ class Course: Identifiable, Decodable {
     
     // MARK: - Decodable 手动实现
     enum CodingKeys: CodingKey {
-        case id, name, location, teacher, weekInterval, weekday, period, table
+        case id, name, location, teacher, weekInterval, weekday, period
     }
-
+    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -44,7 +44,5 @@ class Course: Identifiable, Decodable {
         self.weekInterval = try container.decode([Int].self, forKey: .weekInterval)
         self.weekday = try container.decode(Int.self, forKey: .weekday)
         self.period = try container.decode([Int].self, forKey: .period)
-        self.table = try container.decode(String.self, forKey: .table)
-        
     }
 }

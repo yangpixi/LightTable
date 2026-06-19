@@ -19,6 +19,19 @@ struct CourseUtils {
             .sorted { ($0.period.first ?? 0) < ($1.period.first ?? 0) }
     }
     
+    static func getCurrentPeriod(in periods: [Period]) -> Period? {
+        for period in periods {
+            let now = Date()
+            let currentMin = Calendar.current.component(.hour, from: now) * 60 + Calendar.current.component(.minute, from: now)
+            
+            if currentMin < period.endTimeMinutes {
+                return period
+            }
+        }
+        return nil
+    }
+    
+    @MainActor
     static func fetchScript(for school: String) -> String? {
         let modelContext = ModelContext(LightTableDatabase.sharedContainer)
         let predicate = #Predicate<SchoolDetail> { detail in
@@ -38,6 +51,7 @@ struct CourseUtils {
         return nil
     }
     
+    @MainActor
     static func saveImportedCourses(_ rawData: String) throws {
         
         let modelContext = ModelContext(LightTableDatabase.sharedContainer)
@@ -45,7 +59,6 @@ struct CourseUtils {
         
         if let jsonData = rawData.data(using: .utf8) {
             let decoder = JSONDecoder()
-            
             
             let dto = try decoder.decode(TableDTO.self, from: jsonData)
             let termStrs = dto.term.split(separator: "-")
@@ -67,12 +80,13 @@ struct CourseUtils {
             
             // insert data
             dto.courses.forEach { course in
+                course.table = table
                 modelContext.insert(course)
             }
             
             modelContext.insert(table)
             
-            UserDefaults.standard.set(table.id.uuidString, forKey: "selected_table")
+            UserDefaults(suiteName: "group.com.yangpixi.LightTable")?.set(table.id.uuidString, forKey: "selected_table")
             
             try modelContext.save()
             print("导入课表成功! ")

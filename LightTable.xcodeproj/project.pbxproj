@@ -6,7 +6,41 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4A1CBE192FE404500020EEDE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1CBE182FE404500020EEDE /* WidgetKit.framework */; };
+		4A1CBE1B2FE404500020EEDE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1CBE1A2FE404500020EEDE /* SwiftUI.framework */; };
+		4A1CBE2C2FE404510020EEDE /* TableWindowExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4A1CBE162FE404500020EEDE /* TableWindowExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4A1CBE2A2FE404510020EEDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4AF086232FDE60C4008C52A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A1CBE152FE404500020EEDE;
+			remoteInfo = TableWindowExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4A1CBE312FE404510020EEDE /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4A1CBE2C2FE404510020EEDE /* TableWindowExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		4A1CBE162FE404500020EEDE /* TableWindowExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TableWindowExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A1CBE182FE404500020EEDE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		4A1CBE1A2FE404500020EEDE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		4A1CBE362FE411990020EEDE /* TableWindowExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TableWindowExtension.entitlements; sourceTree = "<group>"; };
 		4AF0862B2FDE60C4008C52A7 /* LightTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -18,9 +52,128 @@
 			);
 			target = 4AF0862A2FDE60C4008C52A7 /* LightTable */;
 		};
+		4A1CBE302FE404510020EEDE /* Exceptions for "TableWindow" folder in "TableWindowExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 4A1CBE152FE404500020EEDE /* TableWindowExtension */;
+		};
+		4A1CBE3E2FE4176F0020EEDE /* Exceptions for "Models" folder in "LightTable" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Course.swift,
+				DTOs/TableDTO.swift,
+				Period.swift,
+				SchoolDetail.swift,
+				Table.swift,
+			);
+			target = 4AF0862A2FDE60C4008C52A7 /* LightTable */;
+		};
+		4A1CBE3F2FE4176F0020EEDE /* Exceptions for "Models" folder in "TableWindowExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Course.swift,
+				DTOs/TableDTO.swift,
+				Period.swift,
+				SchoolDetail.swift,
+				Table.swift,
+			);
+			target = 4A1CBE152FE404500020EEDE /* TableWindowExtension */;
+		};
+		4A1CBE402FE417760020EEDE /* Exceptions for "Utils" folder in "LightTable" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CourseUtils.swift,
+				ScriptUtils.swift,
+				TimeUtils.swift,
+			);
+			target = 4AF0862A2FDE60C4008C52A7 /* LightTable */;
+		};
+		4A1CBE422FE4177B0020EEDE /* Exceptions for "Utils" folder in "TableWindowExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CourseUtils.swift,
+				ScriptUtils.swift,
+				TimeUtils.swift,
+			);
+			target = 4A1CBE152FE404500020EEDE /* TableWindowExtension */;
+		};
+		4A1CBE4F2FE41C760020EEDE /* Exceptions for "Data" folder in "LightTable" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				LightTableDatabase.swift,
+			);
+			target = 4AF0862A2FDE60C4008C52A7 /* LightTable */;
+		};
+		4A1CBE502FE41C760020EEDE /* Exceptions for "Data" folder in "TableWindowExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				LightTableDatabase.swift,
+			);
+			target = 4A1CBE152FE404500020EEDE /* TableWindowExtension */;
+		};
+		4A1CBE562FE41CDB0020EEDE /* Exceptions for "Errors" folder in "LightTable" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TermFormatError.swift,
+			);
+			target = 4AF0862A2FDE60C4008C52A7 /* LightTable */;
+		};
+		4A1CBE582FE41CE20020EEDE /* Exceptions for "Errors" folder in "TableWindowExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TermFormatError.swift,
+			);
+			target = 4A1CBE152FE404500020EEDE /* TableWindowExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		4A1CBE1C2FE404500020EEDE /* TableWindow */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4A1CBE302FE404510020EEDE /* Exceptions for "TableWindow" folder in "TableWindowExtension" target */,
+			);
+			path = TableWindow;
+			sourceTree = "<group>";
+		};
+		4A1CBE3C2FE417540020EEDE /* Models */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4A1CBE3E2FE4176F0020EEDE /* Exceptions for "Models" folder in "LightTable" target */,
+				4A1CBE3F2FE4176F0020EEDE /* Exceptions for "Models" folder in "TableWindowExtension" target */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4A1CBE3D2FE4175E0020EEDE /* Utils */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4A1CBE402FE417760020EEDE /* Exceptions for "Utils" folder in "LightTable" target */,
+				4A1CBE422FE4177B0020EEDE /* Exceptions for "Utils" folder in "TableWindowExtension" target */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4A1CBE4E2FE41C710020EEDE /* Data */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4A1CBE4F2FE41C760020EEDE /* Exceptions for "Data" folder in "LightTable" target */,
+				4A1CBE502FE41C760020EEDE /* Exceptions for "Data" folder in "TableWindowExtension" target */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		4A1CBE552FE41CD00020EEDE /* Errors */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4A1CBE562FE41CDB0020EEDE /* Exceptions for "Errors" folder in "LightTable" target */,
+				4A1CBE582FE41CE20020EEDE /* Exceptions for "Errors" folder in "TableWindowExtension" target */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		4AF0862D2FDE60C4008C52A7 /* LightTable */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -32,6 +185,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4A1CBE132FE404500020EEDE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A1CBE1B2FE404500020EEDE /* SwiftUI.framework in Frameworks */,
+				4A1CBE192FE404500020EEDE /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4AF086282FDE60C4008C52A7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -42,10 +204,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A1CBE172FE404500020EEDE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4A1CBE182FE404500020EEDE /* WidgetKit.framework */,
+				4A1CBE1A2FE404500020EEDE /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A1CBE3B2FE4174C0020EEDE /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4A1CBE552FE41CD00020EEDE /* Errors */,
+				4A1CBE4E2FE41C710020EEDE /* Data */,
+				4A1CBE3D2FE4175E0020EEDE /* Utils */,
+				4A1CBE3C2FE417540020EEDE /* Models */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		4AF086222FDE60C4008C52A7 = {
 			isa = PBXGroup;
 			children = (
+				4A1CBE3B2FE4174C0020EEDE /* Shared */,
+				4A1CBE362FE411990020EEDE /* TableWindowExtension.entitlements */,
 				4AF0862D2FDE60C4008C52A7 /* LightTable */,
+				4A1CBE1C2FE404500020EEDE /* TableWindow */,
+				4A1CBE172FE404500020EEDE /* Frameworks */,
 				4AF0862C2FDE60C4008C52A7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				4AF0862B2FDE60C4008C52A7 /* LightTable.app */,
+				4A1CBE162FE404500020EEDE /* TableWindowExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,6 +248,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4A1CBE152FE404500020EEDE /* TableWindowExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A1CBE2D2FE404510020EEDE /* Build configuration list for PBXNativeTarget "TableWindowExtension" */;
+			buildPhases = (
+				4A1CBE122FE404500020EEDE /* Sources */,
+				4A1CBE132FE404500020EEDE /* Frameworks */,
+				4A1CBE142FE404500020EEDE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4A1CBE1C2FE404500020EEDE /* TableWindow */,
+			);
+			name = TableWindowExtension;
+			packageProductDependencies = (
+			);
+			productName = TableWindowExtension;
+			productReference = 4A1CBE162FE404500020EEDE /* TableWindowExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		4AF0862A2FDE60C4008C52A7 /* LightTable */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AF086382FDE60C5008C52A7 /* Build configuration list for PBXNativeTarget "LightTable" */;
@@ -68,10 +277,12 @@
 				4AF086272FDE60C4008C52A7 /* Sources */,
 				4AF086282FDE60C4008C52A7 /* Frameworks */,
 				4AF086292FDE60C4008C52A7 /* Resources */,
+				4A1CBE312FE404510020EEDE /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4A1CBE2B2FE404510020EEDE /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				4AF0862D2FDE60C4008C52A7 /* LightTable */,
@@ -93,6 +304,10 @@
 				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
+					4A1CBE152FE404500020EEDE = {
+						CreatedOnToolsVersion = 26.1.1;
+						LastSwiftMigration = 2610;
+					};
 					4AF0862A2FDE60C4008C52A7 = {
 						CreatedOnToolsVersion = 26.1.1;
 						LastSwiftMigration = 2610;
@@ -115,11 +330,19 @@
 			projectRoot = "";
 			targets = (
 				4AF0862A2FDE60C4008C52A7 /* LightTable */,
+				4A1CBE152FE404500020EEDE /* TableWindowExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4A1CBE142FE404500020EEDE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4AF086292FDE60C4008C52A7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -130,6 +353,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4A1CBE122FE404500020EEDE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4AF086272FDE60C4008C52A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -139,7 +369,88 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4A1CBE2B2FE404510020EEDE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A1CBE152FE404500020EEDE /* TableWindowExtension */;
+			targetProxy = 4A1CBE2A2FE404510020EEDE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		4A1CBE2E2FE404510020EEDE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TableWindowExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2HCQAZ4Y7V;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TableWindow/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TableWindow;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangpixi.LightTable.TableWindow;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		4A1CBE2F2FE404510020EEDE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TableWindowExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2HCQAZ4Y7V;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TableWindow/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TableWindow;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangpixi.LightTable.TableWindow;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		4AF086362FDE60C5008C52A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -265,6 +576,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = LightTable/LightTable.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2HCQAZ4Y7V;
@@ -289,6 +601,7 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -306,6 +619,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = LightTable/LightTable.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2HCQAZ4Y7V;
@@ -330,6 +644,7 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -343,6 +658,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4A1CBE2D2FE404510020EEDE /* Build configuration list for PBXNativeTarget "TableWindowExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A1CBE2E2FE404510020EEDE /* Debug */,
+				4A1CBE2F2FE404510020EEDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4AF086262FDE60C4008C52A7 /* Build configuration list for PBXProject "LightTable" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

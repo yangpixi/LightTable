@@ -36,7 +36,7 @@ struct TablePage: View {
     }
     
     private var currentWeek: Int {
-        TimeUtils.getCurrentWeeFromSpecificDay(from: startDay)
+        TimeUtils.getCurrentWeekFromSpecificDay(from: startDay)
     }
     
     private var currentDay: Int {

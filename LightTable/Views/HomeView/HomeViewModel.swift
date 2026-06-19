@@ -17,40 +17,42 @@ class HomeViewModel {
                 return
             }
             
-            currentWeek = TimeUtils.getCurrentWeeFromSpecificDay(from: startDay)
+            currentWeek = TimeUtils.getCurrentWeekFromSpecificDay(from: startDay)
         }
     }
     
     var currentWeek: Int? = 1
+    var courses: [Course]?
     
     func loadData(modelContext: ModelContext) {
-        if let tableIdStr = UserDefaults.standard.string(forKey: "selected_table") {
+        if let tableIdStr = UserDefaults(suiteName: "group.com.yangpixi.LightTable")?.string(forKey: "selected_table") {
             
             guard let tableId = UUID(uuidString: tableIdStr) else {
                 print("UUID转换出错")
                 return
             }
             
-            let predicate = #Predicate<Table> { table in
+            let tablePredicate = #Predicate<Table> { table in
                 table.id == tableId
             }
-            
-            let modelDescriptor = FetchDescriptor(predicate: predicate)
+            let tableModelDescriptor = FetchDescriptor(predicate: tablePredicate)
             
             do {
-                let res = try modelContext.fetch(modelDescriptor)
+                let tableRes = try modelContext.fetch(tableModelDescriptor)
                 
-                guard let firstTable = res.first, res.count <= 1 else {
+                guard let firstTable = tableRes.first, tableRes.count <= 1 else {
                     print("查询数据异常")
                     return
                 }
                 
                 currentTable = firstTable
+                courses = firstTable.courses
                 
             } catch {
                 print("加载课表发生异常: \(error)")
                 return
             }
+            
         }
     }
 }
