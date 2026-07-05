@@ -9,6 +9,19 @@ import SwiftUI
 
 struct SettingView: View {
     var body: some View {
-        Text("Setting view")
+        List {
+            NavigationLink("关于", value: SettingViewRouter.about)
+        }
+        .navigationDestination(for: SettingViewRouter.self, destination: { router in 
+            switch router {
+            case .about: 
+                AboutView()
+            }
+        }
+        )
     }
+}
+
+#Preview {
+    SettingView()
 }

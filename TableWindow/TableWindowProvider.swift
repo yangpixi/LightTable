@@ -65,7 +65,7 @@ struct TableWindowProvider: @MainActor TimelineProvider {
 
                 for periodItem in periodRes {
                     if selectedCourses.count == 2 { 
-                        break 
+                        break
                     }
                     
                     if usedPeriods.contains(periodItem.period) { 
