@@ -47,7 +47,6 @@ struct HomeView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
-                    NavigationLink("导入新课表", value: HomeRouter.importTable)
                     NavigationLink("课表设置", value: HomeRouter.tableSettings)
                 } label: {
                     Image(systemName: "ellipsis.circle")
@@ -56,8 +55,6 @@ struct HomeView: View {
         }
         .navigationDestination(for: HomeRouter.self, destination: { item in
             switch item {
-            case .importTable: // 导入课表的路由
-                TableImportView()
             case .tableSettings: 
                 TableSettingsView()
             }

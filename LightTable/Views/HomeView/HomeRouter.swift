@@ -6,6 +6,5 @@
 //
 
 enum HomeRouter: Hashable {
-    case importTable
     case tableSettings
 }

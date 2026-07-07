@@ -7,4 +7,6 @@
 
 enum SettingViewRouter {
     case about
+    case tables
+    case importTable
 }

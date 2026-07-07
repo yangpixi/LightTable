@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct CourseSheet: View {
-    @Environment(\.modelContext) private var modelContext
     @Query private var periods: [Period]
     
     private var course: Bindable<Course>
