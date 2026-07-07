@@ -14,6 +14,7 @@ struct HomeView: View {
     
     @Environment(\.modelContext) private var modelContext
     @State private var viewModel = HomeViewModel()
+    @State private var selectedCourse: Course?
     
     var body: some View {
         
@@ -22,8 +23,10 @@ struct HomeView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack(spacing: 0) {
                         ForEach(1...currentTable.totalWeeks, id: \.self) { weeks in
-                            TablePage(week: weeks, courses: currentCourses, periods: periods, startDay: currentTable.startDay)
-                                .containerRelativeFrame(.horizontal)
+                            TablePage(week: weeks, courses: currentCourses, periods: periods, startDay: currentTable.startDay, onClickCourse:{ course in
+                                selectedCourse = course
+                            })
+                            .containerRelativeFrame(.horizontal)
                         }
                     }
                     .scrollTargetLayout()
@@ -34,6 +37,10 @@ struct HomeView: View {
                 Text("请先导入课表")
             }
         }
+        .sheet(item: $selectedCourse, content: { course in
+            CourseSheet(Bindable(course))
+                .presentationDragIndicator(.visible)
+        })
         .onAppear {
             viewModel.loadData(modelContext: modelContext)
         }

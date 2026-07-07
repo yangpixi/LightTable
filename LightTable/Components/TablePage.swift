@@ -13,12 +13,14 @@ struct TablePage: View {
     private var courses: [Course]
     private var periods: [Period]
     private var startDay: Date
+    private var onClickCourse: (Course) -> Void
     
-    init(week: Int, courses: [Course], periods: [Period], startDay: Date) {
+    init(week: Int, courses: [Course], periods: [Period], startDay: Date, onClickCourse: @escaping (Course) -> Void) {
         self.week = week
         self.courses = courses
         self.periods = periods
         self.startDay = startDay
+        self.onClickCourse = onClickCourse
     }
     
     private let periodHeight = CGFloat(50)
@@ -81,6 +83,7 @@ struct TablePage: View {
                             }
                         }
                         
+                        // 横向渲染周日到周一的课表
                         ForEach(Array(weekdays.enumerated()), id: \.offset) { index, weekday in
                             VStack(alignment: .leading) {
                                 ZStack(alignment: .top) {
@@ -99,6 +102,7 @@ struct TablePage: View {
                                     }
                                     .offset(y: -40)
                                     
+                                    // 每天的具体课程
                                     ForEach(CourseUtils.coursesFor(weekday: index + 1, week: week, in: courses)) { course in
                                         TableCourse(name: course.name, location: course.location)
                                             .frame(width: 45, height: (periodHeight * CGFloat(course.period.count)) + (CGFloat(course.period.count) - 1) * padding)
@@ -107,6 +111,9 @@ struct TablePage: View {
                                                     .fill(Color.gray.opacity(0.2))
                                             }
                                             .offset(y: CGFloat(course.period.first! - 1) * (periodHeight + padding))
+                                            .onTapGesture { 
+                                                onClickCourse(course)
+                                            }
                                     }
                                 }
                             }
